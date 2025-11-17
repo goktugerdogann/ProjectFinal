@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f7f1ae14369a90418642c37bcb498fd, type: 3}
+  m_Name: Varil
+  m_EditorClassIdentifier: 
+  id: Varil
+  displayName: Varil
+  icon: {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
+  worldPrefab: {fileID: 9183292687442426429, guid: 5dd1686a7653bbd4aa0e7d5292605664, type: 3}
+  isStackable: 0
+  maxStack: 1
+  canEquip: 1
+  canDrop: 1
+  equippedPrefab: {fileID: 9183292687442426429, guid: 5dd1686a7653bbd4aa0e7d5292605664, type: 3}
+  isPlaceable: 1
