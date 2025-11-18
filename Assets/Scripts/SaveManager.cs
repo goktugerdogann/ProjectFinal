@@ -8,6 +8,8 @@ public class SaveManager : MonoBehaviour
 
     [Header("Refs")]
     public ItemDatabase itemDatabase;
+    public Transform playerTransform;  // Inspector’dan Player’ý sürükle
+    public float loadSpawnYOffset = 0.1f;   // istersen ayný deðeri kullan
 
     [System.Serializable]
     public class InventorySlotData
@@ -25,11 +27,20 @@ public class SaveManager : MonoBehaviour
     }
 
     [System.Serializable]
+    public class PlayerData
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+    }
+
+    [System.Serializable]
     public class SaveData
     {
         public List<InventorySlotData> inventory = new List<InventorySlotData>();
         public List<WorldItemData> worldItems = new List<WorldItemData>();
+        public PlayerData player = new PlayerData();
     }
+
 
     string SavePath => Path.Combine(Application.persistentDataPath, "placements.json");
 
@@ -100,7 +111,11 @@ public class SaveManager : MonoBehaviour
             data.worldItems.Add(w);
         }
 
-
+        if (playerTransform != null)
+        {
+            data.player.position = playerTransform.position;
+            data.player.rotation = playerTransform.rotation;
+        }
 
 
 
@@ -203,7 +218,12 @@ public class SaveManager : MonoBehaviour
 
             }
         }
-
+        if (playerTransform != null && data.player != null)
+        {
+            Vector3 pos = data.player.position + Vector3.up * loadSpawnYOffset;
+            playerTransform.position = pos;
+            playerTransform.rotation = data.player.rotation;
+        }
         Debug.Log($"SaveManager: loaded {data.inventory?.Count ?? 0} inventory slots, {data.worldItems?.Count ?? 0} world items.");
     }
 }
